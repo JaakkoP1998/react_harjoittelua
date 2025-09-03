@@ -2,12 +2,21 @@ import {useState,useEffect} from 'react';
 
 const App = () => {
   
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
+  const [comment, setComment] = useState("Comment here")
 
   // "category" -nimisen select elementin käsittelijä
   const handleColorChange = (category) => {
      setCategory(category);
      console.log(category);
+  } 
+
+  // Uuden kommentin "lisääminen". Ei toimi tällä hetkellä
+  // TODO: muuta niin, että oikeasti lisätään kommentti.
+  const addComment = (event) => {
+    event.preventDefault();
+    setComment(event.target.value)
+    console.log(event.target)
   }
 
   // H2-elementti saa taustavärinsä select-elementin valinnoista.
@@ -24,6 +33,15 @@ const App = () => {
             <option value="green">Green</option>
             <option value="blue">Blue</option>
         </select>
+      <div className="commentBox">
+        {/* TODO: muokkaa niin, että kommentit tallennetaan jonnekin, 
+        että kaikki näkyvät, eikä vaan uusin */}
+        <p>{comment}</p>
+          <form onSubmit={addComment}>
+          <input name="commentInput" />
+          <button type="submit">Tallenna</button>
+        </form>
+      </div>
     </div>
   )
 }
