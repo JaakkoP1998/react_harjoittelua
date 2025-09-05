@@ -3,23 +3,31 @@ import {useState,useEffect} from 'react';
 const App = () => {
   
   const [category, setCategory] = useState("");
+  const [newComment, setNewComment] = useState("")
   const [comment, setComment] = useState("Comment here")
 
-  // "category" -nimisen select elementin käsittelijä
+  // Handler for changing color.
   const handleColorChange = (category) => {
      setCategory(category);
      console.log(category);
   } 
 
-  // Uuden kommentin "lisääminen". Ei toimi tällä hetkellä
-  // TODO: muuta niin, että oikeasti lisätään kommentti.
+  // Handler for adding a new comment.
+  // TODO: Change to actually save comment, now only most recent one is saved.
   const addComment = (event) => {
     event.preventDefault();
-    setComment(event.target.value)
-    console.log(event.target)
+    setComment(newComment)
+    //console.log(event.target.value)
   }
 
-  // H2-elementti saa taustavärinsä select-elementin valinnoista.
+  // onChange-jandler for form-element.
+  const addNewComment = (event) => {
+    event.preventDefault();
+    setNewComment(event.target.value);
+    //console.log(event.target.value);
+  }
+
+  // H2 gains its color from select-choices.
   return (
     <div>
       <div>
@@ -34,11 +42,11 @@ const App = () => {
             <option value="blue">Blue</option>
         </select>
       <div className="commentBox">
-        {/* TODO: muokkaa niin, että kommentit tallennetaan jonnekin, 
-        että kaikki näkyvät, eikä vaan uusin */}
+        {/* TODO: Change to actually save all comments, and show them on the website */}
         <p>{comment}</p>
           <form onSubmit={addComment}>
-          <input name="commentInput" />
+          <input name="commentInput" value={newComment}
+            onChange={addNewComment}/>
           <button type="submit">Tallenna</button>
         </form>
       </div>
