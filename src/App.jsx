@@ -1,27 +1,31 @@
 import {useState,useEffect} from 'react';
+import Comment from './components/Comment'
 
-const App = () => {
+const App = (props) => {
   
   const [category, setCategory] = useState("");
   const [newComment, setNewComment] = useState("")
-  const [comment, setComment] = useState("Comment here")
+  const [comments, setComments] = useState(props.comments)
 
   // Handler for changing color.
   const handleColorChange = (category) => {
      setCategory(category);
-     console.log(category);
   } 
 
   // Handler for adding a new comment.
-  // TODO: Change to actually save comment, now only most recent one is saved.
   const addComment = (event) => {
     event.preventDefault();
-    setComment(newComment)
+    const commentObject = {
+      content: newComment,
+      id: String(comments.length + 1)
+    }
+    setComments(comments.concat(commentObject))
+    setNewComment("")
     //console.log(event.target.value)
   }
 
-  // onChange-jandler for form-element.
-  const addNewComment = (event) => {
+  // onChange-handler for form-element.
+  const onCommentChange = (event) => {
     event.preventDefault();
     setNewComment(event.target.value);
     //console.log(event.target.value);
@@ -41,12 +45,19 @@ const App = () => {
             <option value="green">Green</option>
             <option value="blue">Blue</option>
         </select>
-      <div className="commentBox">
+      <div className="commentForm">
         {/* TODO: Change to actually save all comments, and show them on the website */}
-        <p>{comment}</p>
+        <div className="commentBox">
+          <h1>Comments</h1>
+          <ul>
+            {comments.map(comment => 
+              <Comment key={comment.id} comment={comment} />
+            )}
+          </ul>
+        </div>
           <form onSubmit={addComment}>
           <input name="commentInput" value={newComment}
-            onChange={addNewComment}/>
+            onChange={onCommentChange}/>
           <button type="submit">Tallenna</button>
         </form>
       </div>
