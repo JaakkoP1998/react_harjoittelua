@@ -1,11 +1,24 @@
 import {useState,useEffect} from 'react';
 import Comment from './components/Comment'
+import axios from 'axios'
 
 const App = (props) => {
   
   const [category, setCategory] = useState("");
   const [newComment, setNewComment] = useState("")
-  const [comments, setComments] = useState(props.comments)
+  const [comments, setComments] = useState([])
+
+  // Get json data from "server", i.e from json-file.
+  const hook = () => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/comments')
+      .then(response => {
+        console.log('promise fulfilled')
+        setComments(response.data)
+      })
+  }
+  useEffect(hook, [])
 
   // Handler for changing color.
   const handleColorChange = (category) => {
@@ -31,11 +44,11 @@ const App = (props) => {
     //console.log(event.target.value);
   }
 
-  // H2 gains its color from select-choices.
   return (
     <div>
       <div>
         <h1>Greetings</h1>
+        {/* H2 gets backround color from select-choices. */}
         <h2 style={{ backgroundColor: category || 'transparent', padding: '10px' }} >Box for testing</h2>
       </div>
       <select name="category" 
