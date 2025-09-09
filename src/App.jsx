@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react';
 import Comment from './components/Comment'
+import Information from './components/CreatorInformation';
 import axios from 'axios'
 
 const App = (props) => {
@@ -46,6 +47,7 @@ const App = (props) => {
 
   return (
     <div>
+      <Information />
       <div>
         <h1>Greetings</h1>
         {/* H2 gets backround color from select-choices. */}
