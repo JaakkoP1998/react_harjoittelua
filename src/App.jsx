@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react';
 import Comment from './components/Comment'
 import Information from './components/CreatorInformation';
 import axios from 'axios'
+import commentService from './services/comments'
 
 const App = (props) => {
   
@@ -10,16 +11,13 @@ const App = (props) => {
   const [comments, setComments] = useState([])
 
   // Get json data from "server", i.e from json-file.
-  const hook = () => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/comments')
-      .then(response => {
-        console.log('promise fulfilled')
-        setComments(response.data)
+  useEffect(() => {
+    commentService
+      .getAll()
+        .then(initialComments => {
+        setComments(initialComments)
       })
-  }
-  useEffect(hook, [])
+  }, [])
 
   // Handler for changing color.
   const handleColorChange = (category) => {
@@ -33,9 +31,13 @@ const App = (props) => {
       content: newComment,
       id: String(comments.length + 1)
     }
-    setComments(comments.concat(commentObject))
-    setNewComment("")
-    //console.log(event.target.value)
+
+    commentService
+      .create(commentObject)
+        .then(returnedComment => {
+        setComments(comments.concat(returnedComment))
+        setNewComment("")
+      })
   }
 
   // onChange-handler for form-element.
@@ -61,7 +63,6 @@ const App = (props) => {
             <option value="blue">Blue</option>
         </select>
       <div className="commentForm">
-        {/* TODO: Change to actually save all comments, and show them on the website */}
         <div className="commentBox">
           <h1>Comments</h1>
           <ul>
