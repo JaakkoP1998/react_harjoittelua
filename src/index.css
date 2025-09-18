@@ -1,12 +1,17 @@
-.commentForm{
-  border-style: solid;
-  margin-top: 1cm;
-  padding: 4px;
-}
-
 .basicInformation{
   display: grid;
   float: inline-end;
   border-style: dashed;
   padding: 4px;
 }
+
+.colorBox{
+  display: flow-root;
+}
+
+.commentForm{
+  border-style: solid;
+  margin-top: 1cm;
+  padding: 4px;
+}
+

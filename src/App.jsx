@@ -1,10 +1,14 @@
 import {useState,useEffect} from 'react';
-import Comment from './components/Comment'
-import Information from './components/CreatorInformation';
-import axios from 'axios'
 import commentService from './services/comments'
 
-const App = (props) => {
+// Import own modules last for readability.
+import ColorChanger from './components/ColorChanger';
+import Comment from './components/Comment'
+import Information from './components/CreatorInformation';
+import Education from './components/Education';
+import Experience from './components/JobExperience';
+
+const App = () => {
   
   const [category, setCategory] = useState("");
   const [newComment, setNewComment] = useState("")
@@ -50,18 +54,9 @@ const App = (props) => {
   return (
     <div>
       <Information />
-      <div>
-        <h1>Greetings</h1>
-        {/* H2 gets backround color from select-choices. */}
-        <h2 style={{ backgroundColor: category || 'transparent', padding: '10px' }} >Box for testing</h2>
-      </div>
-      <select name="category" 
-        value={category} onChange={event => handleColorChange(event.target.value)}>
-            <option value="">Select Color</option>
-            <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-        </select>
+      <Education />
+      <Experience />
+      <ColorChanger />
       <div className="commentForm">
         <div className="commentBox">
           <h1>Comments</h1>
