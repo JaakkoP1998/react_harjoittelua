@@ -1,4 +1,13 @@
+import { useState } from "react"
+
 const ColorChanger = () => {
+    const [category, setCategory] = useState("");
+
+    // Handler for changing color.
+    const handleColorChange = (category) => {
+        setCategory(category);
+    } 
+
     return <div>
     <div className="colorBox">
         <h1>Greetings</h1>

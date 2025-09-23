@@ -10,7 +10,6 @@ import Experience from './components/JobExperience';
 
 const App = () => {
   
-  const [category, setCategory] = useState("");
   const [newComment, setNewComment] = useState("")
   const [comments, setComments] = useState([])
 
@@ -22,11 +21,6 @@ const App = () => {
         setComments(initialComments)
       })
   }, [])
-
-  // Handler for changing color.
-  const handleColorChange = (category) => {
-     setCategory(category);
-  } 
 
   // Handler for adding a new comment.
   const addComment = (event) => {
@@ -52,7 +46,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className='mainContent'>
       <Information />
       <Education />
       <Experience />

@@ -15,3 +15,11 @@
   padding: 4px;
 }
 
+.mainContent{
+  display: initial;
+}
+
+.picture{
+  border-style: solid;
+  border-width: 3px;
+}
