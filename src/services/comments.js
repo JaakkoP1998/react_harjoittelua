@@ -1,7 +1,5 @@
 import axios from 'axios'
-
-// Communication is in its own module, based on Single Responsibility principle.
-const baseUrl = 'http://localhost:3001/comments'
+const baseUrl = 'http://localhost:3001/api/comments'
 
 // TODO: Create Error Responses.
 const getAll = () => {
