@@ -1,7 +1,7 @@
 import {useState,useEffect} from 'react';
 import commentService from './services/comments'
 
-// Import own modules last for readability.
+// Import all own modules here for better readability.
 import ColorChanger from './components/ColorChanger';
 import Comment from './components/Comment'
 import Information from './components/CreatorInformation';
@@ -13,7 +13,7 @@ const App = () => {
   const [newComment, setNewComment] = useState("")
   const [comments, setComments] = useState([])
 
-  // Get json data from "server", i.e from json-file.
+  // Get comment-data from service.
   useEffect(() => {
     commentService
       .getAll()
@@ -48,8 +48,8 @@ const App = () => {
   return (
     <div className='mainContent'>
       <Information />
-      <Education />
       <Experience />
+      <Education />
       <ColorChanger />
       <div className="commentForm">
         <div className="commentBox">
