@@ -25,14 +25,16 @@ const App = () => {
   // Handler for adding a new comment.
   const addComment = (event) => {
     event.preventDefault();
+    // Constructor for comment-object
     const commentObject = {
       content: newComment,
       id: String(comments.length + 1)
     }
-
+    // Save comment through service.
     commentService
       .create(commentObject)
         .then(returnedComment => {
+        // Update current comments after saving new one.
         setComments(comments.concat(returnedComment))
         setNewComment("")
       })
@@ -42,9 +44,9 @@ const App = () => {
   const onCommentChange = (event) => {
     event.preventDefault();
     setNewComment(event.target.value);
-    //console.log(event.target.value);
   }
 
+  // TODO: Create english translation and feature to swich languages.
   return (
     <div className='mainContent'>
       <Information />
