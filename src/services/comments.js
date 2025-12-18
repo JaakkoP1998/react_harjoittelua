@@ -1,6 +1,6 @@
 import axios from 'axios'
 // This URL is for testing locally:
-//const baseUrl = 'http://localhost:3001/api/comments'
+// const baseUrl = 'http://localhost:3001/api/comments'
 
 // This URL points to my Render-webservice.
 const baseUrl = 'https://react-express-practice.onrender.com/api/comments'
