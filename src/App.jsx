@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react';
 import commentService from './services/comments'
 
 // Import all own modules here for better readability.
+import LoginForm from './components/LoginForm';
 import ColorChanger from './components/ColorChanger';
 import Comment from './components/Comment'
 import Information from './components/CreatorInformation';
@@ -53,6 +54,7 @@ const App = () => {
       <Experience />
       <Education />
       <ColorChanger />
+      <LoginForm />
       <div className="commentForm">
         <div className="commentBox">
           <h1>Comments</h1>

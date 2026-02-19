@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+// Component for changing backgroundcolors of the H2-title with select.
 const ColorChanger = () => {
     const [category, setCategory] = useState("");
 
@@ -11,7 +12,7 @@ const ColorChanger = () => {
     return <div>
     <div className="colorBox">
         <h1>Greetings</h1>
-        {/* H2 gets backround color from select-choices. */}
+        {/* H2-element gets background color from select-choices. */}
         <h2 style={{ backgroundColor: category || 'transparent', padding: '10px' }} > Box for testing </h2>
       </div>
       <select name="category" 
