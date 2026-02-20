@@ -1,3 +1,5 @@
+// This file is for handling API calls regarding comments to back-end.
+
 import axios from 'axios'
 // This URL is for testing locally:
 const baseUrl = 'http://localhost:3001/api/comments'
