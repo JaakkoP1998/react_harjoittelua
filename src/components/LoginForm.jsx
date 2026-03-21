@@ -1,5 +1,6 @@
 import { useState } from "react"
 import loginService from "../services/login"
+import commentService from "../services/comments"
 
 // Component for login form.
 const LoginForm = () => {
@@ -16,17 +17,20 @@ const LoginForm = () => {
 
         try {
             // Send credentials to loginService
-            const user = await loginService.login({ username, password })
+            const loggedUser = await loginService.login({ username, password })
+            console.log("LOGIN RESPONSE:", loggedUser)
+
+            commentService.setToken(loggedUser.token)
             // Set logged in user and nullify login form.
-            setUser(user)
-            console.log(user)
+            setUser(loggedUser)
             // Simple alert window, for showing if login was successfull or not.
             alert(`Logged in as ${username}`)
             setUsername('')
             setPassword('')
-        } catch {
+        } catch (error) {
             // Print error if login not successfull.
             // console.log('wrong credentials')
+            console.error(error)
             alert("Wrong username or credentials.")
     }
     }
@@ -57,6 +61,12 @@ const LoginForm = () => {
                 </div>
                 <button type="submit"> login </button>
             </form>
+            {/* Usernames conditional rendering */}
+            {user && (
+                <div>
+                    <p>{user.name} logged in</p>
+                </div>
+            )}
         </div>
     )
 }

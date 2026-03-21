@@ -1,3 +1,4 @@
+// Component for showing content of the comment-object.
 const Comment = ({ comment }) => {
   return <li>{comment.content}</li>
 }
