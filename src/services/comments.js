@@ -12,7 +12,6 @@ let token = null
 
 const setToken = newToken => {
   token = `Bearer ${newToken}`
-  console.log("Token has been set!")
 }
 
 // TODO: Create Error Responses.
@@ -30,8 +29,6 @@ const create = async newObject => {
   const config = {
     headers: { Authorization: token }
   }
-
-  console.log("Why no post?")
 
   // URL to be called, comment to be added and user-token 
   // are given to Axios as parameters.
