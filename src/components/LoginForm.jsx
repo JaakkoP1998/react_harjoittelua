@@ -58,35 +58,39 @@ const LoginForm = () => {
 
     return (
         <div>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>
-                        username
-                        <input
-                        type="text"
-                        value={username}
-                        onChange={({ target }) => setUsername(target.value)}
-                        />
-                    </label>
+            {/* Conditional rendering whenever we show login form or logout button.*/}
+            {!user && (
+                <div className="logInDiv">
+                    <h2>Login</h2>
+                    <form onSubmit={handleLogin}>
+                        <div>
+                            <label>
+                                username
+                                <input
+                                type="text"
+                                value={username}
+                                onChange={({ target }) => setUsername(target.value)}
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                password
+                                <input
+                                type="password"
+                                value={password}
+                                onChange={({ target }) => setPassword(target.value)}
+                                />
+                            </label>
+                        </div>
+                        <button type="submit"> Login </button>
+                    </form>
                 </div>
-                <div>
-                    <label>
-                        password
-                        <input
-                        type="password"
-                        value={password}
-                        onChange={({ target }) => setPassword(target.value)}
-                        />
-                    </label>
-                </div>
-                <button type="submit"> Login </button>
-            </form>
-            <button onClick={handleLogOut}> Logout </button>
-            {/* Conditional rendering for showing logged in user's name.*/}
+            )}
             {user && (
                 <div>
                     <p>{user.name} logged in</p>
+                    <button onClick={handleLogOut}> Logout </button>
                 </div>
             )}
         </div>
